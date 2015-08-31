@@ -55,12 +55,12 @@ $appendConfigurationAndPlatformToNuGetPackageFileName = $true
 #------------------------------------------------
 
 # The NuGet gallery to upload to. If not provided, the DefaultPushSource in your NuGet.config file is used (typically nuget.org).
-$sourceToUploadTo = "http://localhost:55033"
-#$sourceToUploadTo = "http://hellogbyenugetserver.azurewebsites.net"
+#$sourceToUploadTo = "http://localhost:55033"
+$sourceToUploadTo = "http://hellogbyenugetserver.azurewebsites.net"
 
 # The API Key to use to upload the package to the gallery. If not provided and a system-level one does not exist for the specified Source, you will be prompted for it.
-$apiKey = "test3671"
-#$apiKey = "amgine123#@!"
+#$apiKey = "test3671"
+$apiKey = "amgine123#@!"
 
 # Specify any NuGet Push options to pass to nuget.exe.
 #	e.g. $pushOptions = "-Timeout 120"
