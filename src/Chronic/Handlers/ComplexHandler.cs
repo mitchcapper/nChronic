@@ -53,10 +53,8 @@ namespace Chronic.Handlers
                 }
                 else if (pattern is HandlerTypePattern)
                 {
-                    if (isOptional && thereAreNoMoreTokens)
-                    {
-                        return true;
-                    }
+                    if (thereAreNoMoreTokens)
+                        return isOptional;
                     var subHandlers = registry.GetHandlers((pattern as HandlerTypePattern).Type);
                     foreach (var handler in subHandlers)
                     {

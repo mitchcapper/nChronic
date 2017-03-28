@@ -33,6 +33,12 @@ namespace Chronic.Tests
 		}
 
         [Fact]
+        public void _in_7_days_from_dotdotdot()
+        {
+            Parse("in 7 days from").AssertEquals(Time.New(2006, 8, 23, 14));
+        }
+
+        [Fact]
         public void _7_days_from_now_at_midnight()
         {
             Parse(" 7 days from now at midnight")
