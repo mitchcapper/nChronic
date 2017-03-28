@@ -60,6 +60,7 @@ namespace Chronic.Handlers
                         .Required<Pointer>()
                         .Required<Scalar>()
                         .Required<IRepeater>()
+                        .Optional<Pointer>()
                         .Using<PSRHandler>(),
                     Handle
 						.Optional<SeparatorIn>()
