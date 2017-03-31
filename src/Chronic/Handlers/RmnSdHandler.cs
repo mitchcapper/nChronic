@@ -13,10 +13,6 @@ namespace Chronic.Handlers
             var day = (int)tokens[1].GetTag<ScalarDay>().Value;
 
             var now = options.Clock();
-            if (Time.IsMonthOverflow(now.Year, (int)month.Value, day))
-            {
-                return null;
-            }
             return Utils.HandleMD(month, day, tokens.Skip(2).ToList(), options);
         }
     }

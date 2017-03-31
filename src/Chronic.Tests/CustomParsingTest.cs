@@ -105,5 +105,24 @@ namespace Chronic.Tests
                 Parse("2nd week of january").AssertEquals(Time.New(2007, 1, 10, 12));
             }
         }
+
+        public class StrangeTimesTest : ParsingTestsBase
+        {
+            protected override DateTime Now()
+            {
+                return Time.New(2017, 1, 1, 0, 0, 0);
+            }
+
+            [Fact]
+            public void Feb30()
+            {
+                Parse("Feb 30").AssertStartsAt(Time.New(2017, 2, 30));
+            }
+            [Fact]
+            public void April31()
+            {
+                Parse("April 31").AssertStartsAt(Time.New(2017, 4, 31));
+            }
+        }
+        }
     }
-}
