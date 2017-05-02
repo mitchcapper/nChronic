@@ -47,9 +47,13 @@ namespace Chronic
         {
             var normalized = phrase.ToLower();
             normalized = normalized
+                .ReplaceAll(@"\s+", " ")
                 .ReplaceAll(@"([/\-,@])", " " + "$1" + " ")
                 .ReplaceAll(@"['""\.,]", "")
-                .ReplaceAll(@"\bsecond (of|day|month|hour|minute|second)\b", "2nd $1")
+                //.ReplaceAll(@"\bsecond (of|day|month|hour|minute|second)\b", "2nd $1")
+                .ReplaceAll(@"\b(1|one) second\b", "1 sec")
+                .ReplaceAll(@"\bthis second\b", "this sec")
+                .ReplaceAll(@"\bseconds\b", "sec")
                 .Numerize()
                 .ReplaceAll(@" \-(\d{4})\b", " tzminus$1")
                 .ReplaceAll(@"(?:^|\s)0(\d+:\d+\s*pm?\b)", "$1")
@@ -60,7 +64,7 @@ namespace Chronic
                 .ReplaceAll(@"\bnoon\b", "12:00")
                 .ReplaceAll(@"\bmidnight\b", "24:00")
                 .ReplaceAll(@"\bbefore now\b", "past")
-                .ReplaceAll(@"\bnow\b", "this second")
+                .ReplaceAll(@"\bnow\b", "this sec")
                 .ReplaceAll(@"\b(ago|before)\b", "past")
                 .ReplaceAll(@"\bthis past\b", "last")
                 .ReplaceAll(@"\bthis last\b", "last")

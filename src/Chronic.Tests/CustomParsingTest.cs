@@ -104,6 +104,24 @@ namespace Chronic.Tests
             {
                 Parse("2nd week of january").AssertEquals(Time.New(2007, 1, 10, 12));
             }
+
+            [Fact]
+            public void secondWord_week_january_is_parsed_correctly()
+            {
+                Parse("second week january").AssertEquals(Time.New(2007, 1, 10, 12));
+            }
+
+            [Fact]
+            public void secondWord_week_of_january_is_parsed_correctly()
+            {
+                Parse("second week of january").AssertEquals(Time.New(2007, 1, 10, 12));
+            }
+
+            [Fact]
+            public void secondWord_week_in_january_is_parsed_correctly()
+            {
+                Parse("second week in january").AssertEquals(Time.New(2007, 1, 10, 12));
+            }
         }
 
         public class StrangeTimesTest : ParsingTestsBase

@@ -181,7 +181,7 @@ namespace Chronic.Tags.Repeaters
                 new { Pattern = "^days?$".Compile(), Unit = typeof(RepeaterDay) },
                 new { Pattern = "^hours?$".Compile(), Unit = typeof(RepeaterHour) },
                 new { Pattern = "^minutes?$".Compile(), Unit = typeof(RepeaterMinute) },
-                new { Pattern = "^seconds?$".Compile(), Unit = typeof(RepeaterSecond) }
+                new { Pattern = "^sec$".Compile(), Unit = typeof(RepeaterSecond) }
             };
     }
 }
