@@ -121,6 +121,11 @@ namespace Chronic
             if (grabberType == Grabber.Type.Last)
             {
                 outerSpan = head.GetNextSpan(Pointer.Type.Past);
+                if (head.RawValue is UnitName &&
+                    (head.RawValue as UnitName?) == UnitName.Week)
+                {
+                    outerSpan = head.GetNextSpan(Pointer.Type.Past);
+                }
             }
             else if (grabberType == Grabber.Type.This)
             {
