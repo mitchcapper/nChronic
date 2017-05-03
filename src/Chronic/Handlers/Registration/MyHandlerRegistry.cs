@@ -197,13 +197,12 @@ namespace Chronic.Handlers
                         .Optional<SeparatorIn>()
                         .Required<RepeaterMonthName>()
                         .Using<GRSRHandler>(),
-                    // TODO: PRS-544
-                     //Handle
-                     //   .Required<Grabber>()
-                     //   .Required<RepeaterDay>()
-                     //   .Optional<SeparatorIn>()
-                     //   .Required<RepeaterMonthName>()
-                     //   .Using<GRSRHandler>(),
+                     Handle
+                        .Required<Grabber>()
+                        .Required<RepeaterDayName>()
+                        .Optional<SeparatorIn>()
+                        .Required<RepeaterMonthName>()
+                        .Using<GRSRHandler>(),
                     Handle
                         .Required<OrdinalDay>()
                         .Required<RepeaterMonthName>()

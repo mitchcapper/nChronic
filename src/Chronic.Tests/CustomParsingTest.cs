@@ -67,7 +67,7 @@ namespace Chronic.Tests
         }
 
 
-        public class WeekXinMonth : ParsingTestsBase
+        public class WeekOrDayXinMonth : ParsingTestsBase
         {
             protected override DateTime Now()
             {
@@ -113,13 +113,16 @@ namespace Chronic.Tests
                 Parse("last week in january")  .AssertEndsAt(Time.New(2018, 2, 1));
             }
 
-            // TODO: PRS-544
-            //[Fact]
-            //public void o_r_s_r()
-            //{
-            //    var xxxxxxx = Parse("last wednesday in november");
-            //    //Parse("last wednesday in november").AssertIsNull(); // <-------- wrong!!
-            //}
+            [Fact]
+            public void first_wednesday_in_october()
+            {
+                Parse("first wednesday in october").AssertEquals(Time.New(2017, 10, 4, 12));
+            }
+            [Fact]
+            public void last_wednesday_in_october()
+            {
+                Parse("last wednesday in october").AssertEquals(Time.New(2017, 10, 25, 12));
+            }
         }
 
         public class OverflowTests : ParsingTestsBase
