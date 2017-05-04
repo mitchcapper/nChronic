@@ -68,7 +68,7 @@ namespace Chronic.Tests
             new[,]
                 {
                     {"first", "1st"},
-                    {"second", "second"},
+                    {"second", "2nd"},
                     {"second day", "2nd day"},
                     {"second of may", "2nd of may"},
                     {"third of may", "2rd of may"},

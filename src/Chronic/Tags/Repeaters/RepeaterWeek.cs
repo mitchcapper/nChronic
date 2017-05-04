@@ -49,9 +49,7 @@ namespace Chronic.Tags.Repeaters
                 {
                     var sundayRepeater = new RepeaterDayName(GetStartOfWeek());
                     sundayRepeater.Now = Now.Value.AddDays(1);
-                    sundayRepeater.GetNextSpan(Pointer.Type.Past);
-                    var lastSundaySpan = sundayRepeater
-                        .GetNextSpan(Pointer.Type.Past);
+                    var lastSundaySpan = sundayRepeater.GetNextSpan(Pointer.Type.Past);
                     _start = lastSundaySpan.Start.Value;
                 }
                 else

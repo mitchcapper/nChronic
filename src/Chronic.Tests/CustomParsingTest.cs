@@ -80,29 +80,100 @@ namespace Chronic.Tests
                     .AssertEquals(Time.New(2006, 8, 09, 12, 34, 13));
             }
 
-			[Fact]
-			public void friday_9_oct()
-			{
-				Parse("friday 9 oct")
-					.AssertEquals(Time.New(2006, 10, 09, 12));
-			}
+            [Fact]
+            public void friday_9_oct()
+            {
+                Parse("friday 9 oct")
+                    .AssertEquals(Time.New(2006, 10, 09, 12));
+            }
 
             [Fact]
             public void second_week_in_january_is_parsed_correctly()
             {
                 Parse("2nd week in january").AssertEquals(Time.New(2007, 1, 10, 12));
             }
-
             [Fact]
             public void second_week_january_is_parsed_correctly()
             {
                 Parse("2nd week january").AssertEquals(Time.New(2007, 1, 10, 12));
             }
-
             [Fact]
             public void second_week_of_january_is_parsed_correctly()
             {
                 Parse("2nd week of january").AssertEquals(Time.New(2007, 1, 10, 12));
+            }
+            [Fact]
+            public void secondWord_week_january_is_parsed_correctly()
+            {
+                Parse("second week january").AssertEquals(Time.New(2007, 1, 10, 12));
+            }
+            [Fact]
+            public void secondWord_week_of_january_is_parsed_correctly()
+            {
+                Parse("second week of january").AssertEquals(Time.New(2007, 1, 10, 12));
+            }
+            [Fact]
+            public void secondWord_week_in_january_is_parsed_correctly()
+            {
+                Parse("second week in january").AssertEquals(Time.New(2007, 1, 10, 12));
+            }
+
+            [Fact]
+            public void third_week_of_month_test_num()
+            {
+                Parse("3rd week in january").AssertEquals(Time.New(2007, 1, 17, 12));
+            }
+            [Fact]
+            public void third_week_of_month_test()
+            {
+                Parse("third week in january").AssertEquals(Time.New(2007, 1, 17, 12));
+            }
+            [Fact]
+            public void third_week_of_month_test2()
+            {
+                Parse("third week january").AssertEquals(Time.New(2007, 1, 17, 12));
+            }
+            [Fact]
+            public void third_week_of_month_test3()
+            {
+                Parse("third week of january").AssertEquals(Time.New(2007, 1, 17, 12));
+            }
+
+            [Fact]
+            public void fourth_week_of_month_test_num()
+            {
+                Parse("4th week in january").AssertEquals(Time.New(2007, 1, 24, 12));
+            }
+            [Fact]
+            public void fourth_week_of_month_test()
+            {
+                Parse("fourth week in january").AssertEquals(Time.New(2007, 1, 24, 12));
+            }
+            [Fact]
+            public void fourth_week_of_month_test2()
+            {
+                Parse("fourth week january").AssertEquals(Time.New(2007, 1, 24, 12));
+            }
+            [Fact]
+            public void fourth_week_of_month_test3()
+            {
+                Parse("fourth week of january").AssertEquals(Time.New(2007, 1, 24, 12));
+            }
+
+            [Fact]
+            public void last_week_of_month_test()
+            {
+                Parse("last week in january").AssertEquals(Time.New(2007, 1, 31, 12));
+            }
+            [Fact]
+            public void last_week_of_month_test2()
+            {
+                Parse("last week january").AssertEquals(Time.New(2007, 1, 31, 12));
+            }
+            [Fact]
+            public void last_week_of_month_test3()
+            {
+                Parse("last week of january").AssertEquals(Time.New(2007, 1, 31, 12));
             }
         }
 
@@ -124,5 +195,5 @@ namespace Chronic.Tests
                 Parse("April 31").AssertStartsAt(Time.New(2017, 4, 31));
             }
         }
-        }
     }
+}
