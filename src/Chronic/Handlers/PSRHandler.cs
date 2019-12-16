@@ -2,7 +2,8 @@ using System.Collections.Generic;
 
 namespace Chronic.Handlers
 {
-    public class PSRHandler : SRPHandler
+	//This handler is no longer used, instead MultiSRHandler is used in its place as it is more flexible.  Left behind in case used as a base class by 3rd party handlers.
+	public class PSRHandler : SRPHandler
     {
         public override Span Handle(IList<Token> tokens, Options options)
         {

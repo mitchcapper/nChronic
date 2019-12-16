@@ -49,6 +49,7 @@ namespace Chronic.Handlers
 
 		void RegisterArrowHandlers()
 		{
+			//in 5 minutes,  four days future, etc
 			var handlers = new List<ComplexHandler>()
                 {
                     Handle
@@ -56,13 +57,16 @@ namespace Chronic.Handlers
                         .Required<IRepeater>()
                         .Required<Pointer>()
                         .Using<SRPHandler>(),
-                    Handle
-                        .Required<Pointer>()
-                        .Required<Scalar>()
-                        .Required<IRepeater>()
-                        .Optional<Pointer>()
-                        .Using<PSRHandler>(),
-                    Handle
+					Handle
+						.Required<Pointer>()
+						.Repeat(pattern => pattern
+							.Required<Scalar>()
+							.Required<IRepeater>()
+							.Optional<SeparatorComma>()
+						).AnyNumberOfTimes()
+						.Optional<Pointer>()
+						.Using<MultiSRHandler>(),
+					Handle
 						.Optional<SeparatorIn>()
                         .Optional<Scalar>()
                         .Required<IRepeater>()

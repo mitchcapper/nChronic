@@ -7,7 +7,11 @@ namespace Chronic.Handlers
     {
         public virtual Span Handle(IList<Token> tokens, Options options)
         {
-            var now = options.Clock();
+			var pointer = tokens.First(token => token.IsTaggedAs<Pointer>());
+			if (tokens.First().IsTaggedAs<Pointer>())//if we are starting with a pointer then it is a multi arrow situation
+				tokens = tokens.Skip(1).ToList();
+
+			var now = options.Clock();
             var span = new Span(now, now.AddSeconds(1));
 
             var grabberTokens = tokens
@@ -23,7 +27,7 @@ namespace Chronic.Handlers
                 .Where(token => token.IsNotTaggedAs<SeparatorComma>())
                 .ToList();
 
-            var pointer = tokens.First(token => token.IsTaggedAs<Pointer>());
+            
 
             for (var index = 0; index < scalarRepeaters.Count - 1; index++)
             {

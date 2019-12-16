@@ -43,6 +43,16 @@ namespace Chronic.Tests
 				.AssertEquals(Now().AddHours(7.5));
 		}
 		[Fact]
+		public void _in_4_hours_12_min_from_now() {
+			Parse("in 4 hours 12 minutes")
+				.AssertEquals(Now().AddHours(4).AddMinutes(12));
+		}
+		[Fact]
+		public void _in_2_days_28_hours_16_minutes_from_now() {
+			Parse("in 2 days 28 hours 16 minutes")
+				.AssertEquals(Now().AddDays(2).AddHours(28).AddMinutes(16));
+		}
+		[Fact]
         public void _in_7_days_from_dotdotdot()
         {
             Parse("in 7 days from").AssertEquals(Time.New(2006, 8, 23, 14));
