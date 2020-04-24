@@ -67,6 +67,7 @@ namespace Chronic.Handlers
             var outerSpan = new Span(dayStart, dayStart.AddDays(1));
             if (timeTokens.Count > 0)
             {
+                options = options.Clone();//if we are going to screw with the clock we probably shouldn't effect every call after this:)
                 options.Clock = () => outerSpan.Start.Value;
                 var time = timeTokens
                     .DealiasAndDisambiguateTimes(options)
