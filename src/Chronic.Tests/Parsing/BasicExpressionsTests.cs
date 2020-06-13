@@ -88,7 +88,7 @@ namespace Chronic.Tests.Parsing
         [Fact]
         public void week_after_next_friday_is_parsed_correctly()
         {
-            Parse("week after next friday").AssertStartsAt(GetFirstDateOfWeekday(DateTime.Today, DayOfWeek.Friday).AddDays(2*7));
+            Parse("week after next friday").AssertStartsAt(NextWeek(GetFirstDateOfWeekday(DateTime.Today, DayOfWeek.Friday).AddDays(7)));
         }
 		public static DateTime NextWeek(DateTime start) {
 			return GetFirstDateOfWeekday(start.DayOfWeek == DayOfWeek.Sunday ? start.AddDays(1) : start, DayOfWeek.Sunday);
@@ -106,14 +106,31 @@ namespace Chronic.Tests.Parsing
 		{
 			Parse("1 day after 11/15/2015").AssertStartsAt(new DateTime(2015, 11, 16));
 		}
+        [Fact]
+        public void day_after_date_with_time_is_parsed_correctly()
+        {
+            Parse("1 day after 11/15/2015 at 3 am").AssertStartsAt(new DateTime(2015, 11, 16,3,00,00));
+        }
 
-		[Fact]
-		public void next_friday_or_weekend_is_parsed_correctly()
-		{
-			Parse("next friday").AssertStartsAt(GetFirstDateOfWeekday(DateTime.Today, DayOfWeek.Friday).AddDays(7));
-			Parse("next week friday").AssertStartsAt(GetFirstDateOfWeekday(DateTime.Today, DayOfWeek.Friday).AddDays(7));
-			Parse("next weekend").AssertStartsAt(GetFirstDateOfWeekday(DateTime.Today, DayOfWeek.Saturday).AddDays(7));
-			Parse("next week weekend").AssertStartsAt(GetFirstDateOfWeekday(DateTime.Today, DayOfWeek.Saturday).AddDays(7));
+        [Fact]
+        public void this_friday() {
+            Parse("this friday").AssertStartsAt(GetFirstDateOfWeekday(DateTime.Today, DayOfWeek.Friday));
+        }
+        [Fact]
+        public void next_friday() {
+            Parse("next friday").AssertStartsAt(GetFirstDateOfWeekday(DateTime.Today, DayOfWeek.Friday).AddDays(7));
+        }
+        [Fact]
+        public void next_week_friday() {
+            Parse("next week friday").AssertStartsAt(GetFirstDateOfWeekday(NextWeek(DateTime.Today), DayOfWeek.Friday));
+        }
+        [Fact]
+        public void next_weekend() {
+            Parse("next weekend").AssertStartsAt(GetFirstDateOfWeekday(DateTime.Today, DayOfWeek.Saturday).AddDays(7));
+        }
+        [Fact]
+        public void next_week_weekend() {
+            Parse("next week weekend").AssertStartsAt(GetFirstDateOfWeekday(DateTime.Today, DayOfWeek.Saturday).AddDays(7));
 		}
     }
 }
