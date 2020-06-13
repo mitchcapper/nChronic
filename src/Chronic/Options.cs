@@ -11,7 +11,7 @@ namespace Chronic
 
         public Pointer.Type Context { get; set; }
 
-        public int AmbiguousTimeRange { get; set; }
+        public int AmbiguousTimeRange { get; set; } //the range is AmbiguousTimeRange AM to AmbiguousTimeRange PM that ambiguous times (like 5:00) are expected within
 
         public EndianPrecedence EndianPrecedence { get; set; }
 

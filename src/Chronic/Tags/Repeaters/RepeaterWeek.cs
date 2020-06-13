@@ -8,7 +8,7 @@ namespace Chronic.Tags.Repeaters
     public class RepeaterWeek : RepeaterUnit
     {
         private readonly Options _options;
-        public static readonly int WEEK_SECONDS = 604800; // (7 * 24 * 60 * 60);
+        public static readonly int WEEK_SECONDS = (int)TimeSpan.FromDays(7).TotalSeconds; // (7 * 24 * 60 * 60);
         public static readonly int WEEK_DAYS = 7;
 
         private DateTime? _start;
