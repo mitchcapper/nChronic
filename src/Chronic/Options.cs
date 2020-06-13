@@ -6,6 +6,7 @@ namespace Chronic
     public class Options
     {
         public static readonly int DefaultAmbiguousTimeRange = 6;
+        public Options Clone() => (Options)this.MemberwiseClone();
 
         public Func<DateTime> Clock { get; set; }
 
@@ -22,7 +23,7 @@ namespace Chronic
         {
             AmbiguousTimeRange = DefaultAmbiguousTimeRange;
             EndianPrecedence = EndianPrecedence.Middle;
-            Clock = () => DateTime.Now;
+            Clock = () => { var now = DateTime.Now; Logger.Log(() => $"Now called it is: {now}"); return now; };
             FirstDayOfWeek = DayOfWeek.Sunday;
         }
     }
