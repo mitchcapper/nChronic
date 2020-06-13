@@ -395,6 +395,11 @@ namespace Chronic.Tests.Parsing
         // end of testing handlers
 
         [Fact]
+        public void _3_years_ago_tomorrow() {
+            Parse("3 years ago tomorrow")
+                .AssertEquals(Time.New(2003, 8, 17, 12));
+        }
+        [Fact]
         public void s_r_p_a()
         {
             // past
@@ -402,8 +407,6 @@ namespace Chronic.Tests.Parsing
             Parse("3 years ago")
                 .AssertEquals(Time.New(2003, 8, 16, 14));
 
-            Parse("3 years ago tomorrow")
-                .AssertEquals(Time.New(2003, 8, 17, 12));
 
             Parse("3 months ago saturday at 5:00 pm")
                 .AssertEquals(Time.New(2006, 5, 19, 17));
@@ -418,6 +421,25 @@ namespace Chronic.Tests.Parsing
                 .AssertEquals(Time.New(2003, 8, 18, 12));
 
             // future
+        }
+
+        [Fact]
+        public void _3_months_before_sat_at_5_00_pm() {
+            Parse("3 months ago saturday at 5:00 pm")
+    .AssertEquals(Time.New(2006, 5, 19, 17));
+
+        }
+        [Fact]
+        public void _3_months_before_sat_at_1_00() {
+            Parse("3 months ago saturday at 1:00")
+    .AssertEquals(Time.New(2006, 5, 19, 13));
+
+        }
+        [Fact]
+        public void _3_months_before_sat() {
+            Parse("3 months ago saturday")
+    .AssertEquals(Time.New(2006, 5, 19, 12));
+
         }
 
         [Fact]

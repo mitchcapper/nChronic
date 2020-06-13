@@ -64,12 +64,62 @@ namespace Chronic.Tests
             Parse(" 7 days from now at midnight")
                 .AssertEquals(Time.New(2006, 8, 24));
         }
-
         [Fact]
-        public void seven_days_from_now_at_midnight()
+        public void on_sat_at_9_am() {
+            var day = DayOfWeek.Saturday;
+            var hour = 9;
+            Parse($"on {day} at {hour}am")
+                .AssertEquals(Chronic.Tests.Parsing.BasicExpressionsTests.GetFirstDateOfWeekday(Now(), day).Date.AddHours(hour));
+        }
+        [Fact]
+        public void sat_at_9_am() {
+            var day = DayOfWeek.Saturday;
+            var hour = 9;
+            Parse($"{day} at {hour}am")
+                .AssertEquals(Chronic.Tests.Parsing.BasicExpressionsTests.GetFirstDateOfWeekday(Now(), day).Date.AddHours(hour));
+        }
+        [Fact]
+        public void next_sat_at_9_am() {
+            var day = DayOfWeek.Saturday;
+            var hour = 9;
+            Parse($"next {day} at {hour} am")
+                .AssertEquals(Chronic.Tests.Parsing.BasicExpressionsTests.GetFirstDateOfWeekday( Now(), day).AddDays(7).Date.AddHours(hour));
+        }
+        [Fact]
+        public void this_sat_at_9_am() {
+            var day = DayOfWeek.Saturday;
+            var hour = 9;
+            Parse($"this {day} at {hour} am")
+                .AssertEquals(Chronic.Tests.Parsing.BasicExpressionsTests.GetFirstDateOfWeekday(Now(), day).Date.AddHours(hour));
+        }
+        [Fact]
+        public void _9_am_on_sat() {
+            var day = DayOfWeek.Saturday;
+            var hour = 9;
+            Parse($"{hour} am on {day}")
+                .AssertEquals(Chronic.Tests.Parsing.BasicExpressionsTests.GetFirstDateOfWeekday(Now(), day).Date.AddHours(hour));
+        }
+        [Fact]
+        public void in_25_days_at_11_am() {
+            var days = 25;
+            var hour = 11;
+            Parse($"in {days} days at {hour}am").AssertEquals(Now().Date.AddDays(days).AddHours(hour));
+        }
+    //[Fact]
+    //public void time_today_with_pointer() {
+    //    //Parse("in 25 days at 12pm").AssertEquals(Now().Date.AddDays(25).AddHours(12));
+    //    Parse("9 am", new { Context = Pointer.Type.Future }).AssertEquals(Now().Date.AddDays(1).AddHours(9));
+    //}
+        [Fact]
+        public void seven_days_from_now_at_noon()
         {
-            Parse(" seven days from now at midnight")
-                .AssertEquals(Time.New(2006, 8, 24));
+            Parse(" seven days from now at noon")
+                .AssertEquals(Now().Date.AddDays(7).AddHours(12));
+        }
+        [Fact]
+        public void seven_days_from_now_at_23_00() {
+            Parse(" seven days from now at 23:00")
+                .AssertEquals(Now().Date.AddDays(7).AddHours(23));
         }
 
         [Fact]
@@ -167,10 +217,16 @@ namespace Chronic.Tests
             }
 
             [Fact]
-            public void may_28_at_5_32_19pm()
+            public void may_28_at_5_32_19pm() {
+                var when = new DateTime(Now().Year, 05, 28, 17, 32, 19);
+                Parse($"{when:MMM d} at {when:h:mm:ss tt}", new { Context = Pointer.Type.Past })
+                    .AssertEquals(when);
+            }
+            [Fact]
+            public void _7_days_and_two_hours_ago()
             {
                 Parse("7 days and two hours ago", new { Context = Pointer.Type.Past })
-                    .AssertEquals(Time.New(2006, 8, 09, 12, 34, 13));
+                    .AssertEquals(Now().AddDays(-7).AddHours(-2));
             }
 
             [Fact]

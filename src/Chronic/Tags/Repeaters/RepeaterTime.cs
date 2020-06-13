@@ -8,6 +8,7 @@ namespace Chronic.Tags.Repeaters
     public class RepeaterTime : Repeater<Tick>
     {
         DateTime? _currentTime;
+        DateTime? last_now;
         const int SecondsInHour = 60 * 60;
 		private Regex decimal_ok= new Regex(@"(.+)([.]\d+)$");
 		public static bool OLD_TIME_DECIMAL_BEHAVIOR = false;
@@ -109,7 +110,12 @@ namespace Chronic.Tags.Repeaters
             var fullDay = RepeaterDay.DAY_SECONDS;
 
             var now = Now.Value;
-            var tick = Value;
+			if (now != last_now) {//someone changed now on us we need to update our cache
+				last_now = now;
+				_currentTime = null;
+
+			}
+			var tick = Value;
             var first = false;
 
             if (_currentTime == null)

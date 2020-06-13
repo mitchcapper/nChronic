@@ -71,7 +71,6 @@ namespace Chronic
                 {
                     var targetTokens = tokens
                         .Where(x =>
-                            x.IsNotTaggedAs<SeparatorAt>() &&
                             x.IsNotTaggedAs<SeparatorComma>() &&
                             x.IsNotTaggedAs<SeparatorDate>())
                         .ToList();
